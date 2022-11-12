@@ -1,0 +1,1 @@
+select DISTINCT Department.name as Department, Employee.name as Employee, Employee.salary as Salary from Employee INNER JOIN Department on Department.id = Employee.departmentId INNER JOIN (select departmentId,max(Salary) as Salary from Employee group by departmentId) t2 on Employee.salary =  t2.Salary and t2.departmentId = Employee.departmentId
