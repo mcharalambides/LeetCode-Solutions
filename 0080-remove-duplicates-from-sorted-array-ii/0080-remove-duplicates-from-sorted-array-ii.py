@@ -8,12 +8,16 @@ class Solution:
         last_num = nums[0]
         counter = 1
         k = 0
-        dummy_num = max(nums)
+        dummy_num = max(nums) + 1
         while i < len(nums):
+            if nums[i] == dummy_num:
+                break
             if nums[i] == last_num:
                 if counter >= 2:
-                    nums[i] = dummy_num
+                    nums.remove(nums[i])
+                    nums.append(dummy_num)
                     k += 1
+                    i = i - 1
                 counter += 1
             else:
                 last_num = nums[i]
@@ -21,8 +25,8 @@ class Solution:
             i = i + 1
         
         
-        for i in range(0,k):
-            nums.remove(dummy_num)
-            nums.append(0)
+        # for i in range(0,k):
+        #     nums.remove(dummy_num)
+        #     nums.append(0)
         return len(nums) - k
         
