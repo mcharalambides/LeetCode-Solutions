@@ -19,8 +19,6 @@ class Solution:
                 counter = 1
             i = i + 1
 
-        # if nums[-1] == last_num and counter == 2:
-        #     nums[-1] = max(nums) + 1
         nums.sort()
         return len(nums) - k
         
