@@ -23,6 +23,7 @@ class Solution:
         
         if len(heads) == 1:
             return ListNode(heads[0],None)
+        
         heads.sort()
         head = ListNode(heads[0],None)
         currentNode = head
