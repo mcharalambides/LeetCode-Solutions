@@ -2,15 +2,13 @@ class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         
         low = 0
-        high = len(nums)
+        high = len(nums)-1
         mid = 0
 
         while low <= high:
 
             mid = (high + low) // 2
             
-            if mid >= len(nums):
-                return len(nums)
 
             # If x is greater, ignore left half
             if nums[mid] < target:
