@@ -22,9 +22,9 @@ class Solution:
                 ans += 1 << i # adding 2 power i to the answer
 
         # and finally checking if the output should be negative and returning it
-        if ans * multiplier > 2147483647:
-            return 2147483647
-        elif ans * multiplier < -2147483648:
-            return -2147483648
+        if ans * multiplier > 2**31 - 1:
+            return 2**31 - 1
+        elif ans * multiplier < -2**31:
+            return -2**31
         else:
             return ans * multiplier
