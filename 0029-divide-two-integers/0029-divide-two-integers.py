@@ -1,30 +1,27 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+        # with no multiplication/ division or mod
         
-        if (divisor > 0 and dividend > 0) or (divisor < 0 and dividend < 0) :
-            multiplier = 1
-        else:
-            multiplier = -1
-    
-        ans = 0 # the quotient is intialized
+        sign = (-1 if dividend < 0 else 1)* (-1 if divisor < 0 else 1)
+        dividend = abs(dividend)
+        divisor = abs(divisor)
         
-        a = dividend
-        b = divisor
-        neg = a < 0 or b < 0 # Checking if one of the numbers is negative
-
-        a = abs(a) # making sure both the numbers
-        b = abs(b) # are positive
-
-        for i in range(31,-1,-1): # starting our loop
-
-            if b << i <= a  : # checking if b multiplied by 2**i is <= a 
-                a -= b << i   # subtracting b << i from a
-                ans += 1 << i # adding 2 power i to the answer
-
-        # and finally checking if the output should be negative and returning it
-        if ans * multiplier > 2**31 - 1:
-            return 2**31 - 1
-        elif ans * multiplier < -2**31:
-            return -2**31
-        else:
-            return ans * multiplier
+        dividend = list(str(dividend))
+        fin = ''
+        remain= ''
+        
+        while len(dividend) > 0:
+            called = dividend.pop(0)
+            called_int = int(remain+called)
+            tc = 0
+            c = 0
+            while tc <= called_int:
+                c += 1
+                tc += divisor
+            if c-1 > 0:
+                fin += str(c-1)
+            else:
+                fin+='0'
+            remain = str(called_int- (tc-divisor))
+        res = int(fin) * sign if fin != '' else 0 
+        return max(min(res, 2**31-1), -2**31)
