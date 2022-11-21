@@ -10,8 +10,7 @@ class Solution:
         
         a = dividend
         b = divisor
-        neg = a < 0 or b < 0 # Checking if one of the numbers is negative
-
+        
         a = abs(a) # making sure both the numbers
         b = abs(b) # are positive
 
