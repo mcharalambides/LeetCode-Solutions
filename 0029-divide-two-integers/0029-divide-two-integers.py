@@ -1,0 +1,30 @@
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        
+        if (divisor > 0 and dividend > 0) or (divisor < 0 and dividend < 0) :
+            multiplier = 1
+        else:
+            multiplier = -1
+    
+        ans = 0 # the quotient is intialized
+        
+        a = dividend
+        b = divisor
+        neg = a < 0 or b < 0 # Checking if one of the numbers is negative
+
+        a = abs(a) # making sure both the numbers
+        b = abs(b) # are positive
+
+        for i in range(31,-1,-1): # starting our loop
+
+            if b << i <= a  : # checking if b multiplied by 2**i is <= a 
+                a -= b << i   # subtracting b << i from a
+                ans += 1 << i # adding 2 power i to the answer
+
+        # and finally checking if the output should be negative and returning it
+        if ans * multiplier > 2147483647:
+            return 2147483647
+        elif ans * multiplier < -2147483648:
+            return -2147483648
+        else:
+            return ans * multiplier
