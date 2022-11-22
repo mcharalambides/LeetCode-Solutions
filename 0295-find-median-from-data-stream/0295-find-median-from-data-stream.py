@@ -8,17 +8,32 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         if len(self.nums) == 0:
             self.nums.append(num)
+            self.findMedian()
             return
         
-        for i in range(0,len(self.nums)):
-            if self.nums[i] >= num:
-                self.nums.insert(i,num)
-                return
+        if num == self.median:
+            self.nums.insert(len(self.nums)//2,num)
+            self.findMedian()
+            return
+        elif num < self.median:
+            for i in range(0,len(self.nums)//2 + 1):
+                if self.nums[i] >= num:
+                    self.nums.insert(i,num)
+                    self.findMedian()
+                    return
+        else:
+            for i in range(len(self.nums)//2, len(self.nums)):
+                if self.nums[i] >= num:
+                    self.nums.insert(i,num)
+                    self.findMedian()
+                    return
+            
                 
         if self.nums[0] > num:
             self.nums.insert(0,num)
         else:
-            self.nums.append(num)            
+            self.nums.append(num)   
+        self.findMedian()
         
 
     def findMedian(self) -> float:
